@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         //監聽LiveData
         myViewModel.diff.observe(this, {
-            println("myViewModel.isStartEnabled= ${myViewModel.isStartEnabled.value}")
-            if (myViewModel.isStartEnabled.value == true) {
+            println("myViewModel.isStartEnabled= ${myViewModel.isStartEnabled}")
+            if (myViewModel.isStartEnabled == true) {
                 myViewModel.initcoroutines(myViewModel.now)
                 var minutes = (myViewModel.diff.value)?.div(60).toString()
                 var second = (myViewModel.diff.value)?.rem(60).toString()
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             butStart.setOnClickListener {
-                if (myViewModel.isStartEnabled.value == false) {
-                    myViewModel.isStartEnabled.value = true
-                    myViewModel.now.value = SystemClock.uptimeMillis()
+                if (myViewModel.isStartEnabled == false) {
+                    myViewModel.isStartEnabled = true
+                    myViewModel.now = SystemClock.uptimeMillis()
                     myViewModel.diff.value = myViewModel.diff.value
                 }
             }
